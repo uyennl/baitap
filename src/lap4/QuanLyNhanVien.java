@@ -1,5 +1,9 @@
-import javax.xml.ws.Endpoint;
-import java.text.DateFormat;
+package lap4;
+
+import lap4.NhanVien;
+import lap4.NhanVienChinhThuc;
+import lap4.NhanVienThoiVu;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.ArrayList;
@@ -122,7 +126,7 @@ public class QuanLyNhanVien {
         nvtv.setSaLary(nvtv.saLary());
 
 
-        // Thêm đối tượng NhanVien này vào ArrayList
+        // Thêm đối tượng lap4.NhanVien này vào ArrayList
         arrNhanVien.add(nvtv);
     }
 

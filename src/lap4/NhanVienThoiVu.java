@@ -1,3 +1,7 @@
+package lap4;
+
+import lap4.NhanVien;
+
 import java.util.Date;
 
 public class NhanVienThoiVu extends NhanVien {

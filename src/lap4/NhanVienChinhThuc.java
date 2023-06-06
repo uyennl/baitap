@@ -1,3 +1,5 @@
+package lap4;
+
 import java.util.Date;
 
 public class NhanVienChinhThuc extends NhanVien {
