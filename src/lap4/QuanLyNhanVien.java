@@ -3,7 +3,8 @@ package lap4;
 import lap4.NhanVien;
 import lap4.NhanVienChinhThuc;
 import lap4.NhanVienThoiVu;
-
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.ArrayList;
@@ -130,6 +131,7 @@ public class QuanLyNhanVien {
         arrNhanVien.add(nvtv);
     }
 
+
     public static int enterId() {
         int id = 0;
         while (true) {
@@ -141,12 +143,26 @@ public class QuanLyNhanVien {
                 continue;
             }
             if (id > 0) {
-                return id;
+                boolean flag = false;
+                for (NhanVien nv : arrNhanVien) {
+                    if (nv.getId() == id) {
+                        flag = true;
+                    }
+                }
+                if (!flag) {
+                    return id;
+                } else {
+                    System.out.println("Id đã tồn tại. Mời nhập lại!");
+                }
             } else {
                 System.out.println("Id phải lớn hơn 0");
             }
 
         }
+    }
+
+    public static void checkNhanVien() {
+
     }
 
     public static String enterName() {
@@ -190,11 +206,11 @@ public class QuanLyNhanVien {
 
             try {
                 String dateString = sc.nextLine();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 birth = dateFormat.parse(dateString);
-            } catch (Exception e) {
+                System.out.println("Ngày tháng năm sinh của bạn: " + dateFormat.format(birth));
+            } catch (ParseException e) {
                 System.out.println("Không thể chuyển đổi ngày! Moi Nhap Lai");
-                continue;
             }
             return birth;
         }
@@ -272,6 +288,10 @@ public class QuanLyNhanVien {
         int count = 0;
         for (NhanVien nv : arrNhanVien) {
             if (nv instanceof NhanVienThoiVu) {
+                //viet hoa chu thuong
+
+                String capitalized = capitalizeFirstLetter(nv.getHoTen());
+                nv.setHoTen(capitalized);
                 System.out.println(nv);
                 count++;
             }
@@ -285,6 +305,8 @@ public class QuanLyNhanVien {
         int count = 0;
         for (NhanVien nv : arrNhanVien) {
             if (nv instanceof NhanVienChinhThuc) {
+                String capitalized = capitalizeFirstLetter(nv.getHoTen());
+                nv.setHoTen(capitalized);
                 System.out.println(nv);
                 count++;
             }
@@ -397,6 +419,26 @@ public class QuanLyNhanVien {
                     break;
             }
         }
+    }
+
+    public static String capitalizeFirstLetter(String str) {
+        StringBuilder sb = new StringBuilder();
+
+        boolean isSpace = true;
+        for (char c : str.toCharArray()) {
+            if (isSpace) {
+                sb.append(Character.toUpperCase(c));
+                isSpace = false;
+            } else {
+                sb.append(c);
+            }
+
+            if (Character.isWhitespace(c)) {
+                isSpace = true;
+            }
+        }
+
+        return sb.toString();
     }
 
 
