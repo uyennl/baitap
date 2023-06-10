@@ -3,26 +3,25 @@ package bai_tap_5;
 import java.time.Year;
 import java.util.Date;
 
-public class ThongTinSach extends TacGiaSach {
+public class ThongTinSach  {
+    private TacGiaSach  tg;
     private String nameBook;
     private long priceBook;
     private int yearPrint;
-
-    public ThongTinSach(String nameBook, long priceBook, int yearPrint,String name, Date birth) {
-        super(name, birth);
-        this.nameBook = nameBook;
-        this.priceBook = priceBook;
-        this.yearPrint = yearPrint;
-
-    }
-
-
     public ThongTinSach(String nameBook, long priceBook, int yearPrint) {
         this.nameBook = nameBook;
         this.priceBook = priceBook;
         this.yearPrint = yearPrint;
     }
-public ThongTinSach(){
+
+    public ThongTinSach(String nameBook, long priceBook, int yearPrint,TacGiaSach tg) {
+        this.tg = tg;
+        this.nameBook = nameBook;
+        this.priceBook = priceBook;
+        this.yearPrint = yearPrint;
+    }
+
+    public ThongTinSach(){
 
 }
     public String getNameBook() {
@@ -51,10 +50,12 @@ public ThongTinSach(){
 
     @Override
     public String toString() {
-        return "ThongTinSach{" +
-                "nameBook='" + nameBook + '\'' +
-                ", priceBook=" + priceBook +
-                ", yearPrint=" + yearPrint +
-                '}';
+        return "ThongTinSach\n" +
+                "NameBook: " + nameBook +
+                "\nPriceBook: " + priceBook +
+                "\nYearPrint: " + yearPrint +
+                "\nThong tin tac gia" + tg ;
     }
 }
+
+

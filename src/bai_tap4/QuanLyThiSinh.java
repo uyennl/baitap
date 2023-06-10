@@ -74,8 +74,8 @@ public class QuanLyThiSinh {
     }
 
     public int addThiSinhKhoiA() {
-        int id;
-        while (true)
+        int id=0;
+        while (true){
             try {
                 id = Integer.parseInt(sc.nextLine());
             }
@@ -83,7 +83,9 @@ public class QuanLyThiSinh {
             System.out.println("Id phai la so. Moi nhap lai!");
         }
 
+        return id;
     }
+}
 
 }
 

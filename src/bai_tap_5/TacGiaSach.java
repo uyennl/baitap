@@ -32,9 +32,7 @@ public class TacGiaSach{
 
     @Override
     public String toString() {
-        return "TacGiaSach{" +
-                "name='" + name + '\'' +
-                ", birth=" + birth +
-                '}';
+        return "\nName: " + name  +
+                "\nBirth: \n" + birth ;
     }
 }

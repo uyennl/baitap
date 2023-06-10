@@ -16,6 +16,7 @@ public class QuanLySach {
     ArrayList<ThongTinSach> arrQuanLySach = new ArrayList<>();
     ThongTinSach in = new ThongTinSach();
 
+
     public void Menu() {
         int choice = 0;
         label:
@@ -42,8 +43,10 @@ public class QuanLySach {
                     displayBook();
                     break;
                 case 3:
+                    displaySame();
                     break;
                 case 4:
+                    displayGiamGia();
                     break;
                 case 5:
                     break label;
@@ -60,13 +63,14 @@ public class QuanLySach {
         int yearPrint = addNamXuatBan();
         String nameAu = addTenTacGia();
         Date birth = addBirth();
-        ThongTinSach tts = new ThongTinSach(name, priceBook, yearPrint, nameAu, birth);
+        TacGiaSach tg = new TacGiaSach(nameAu, birth);
+        ThongTinSach tts = new ThongTinSach(name, priceBook, yearPrint, tg);
         arrQuanLySach.add(tts);
     }
 
     public ThongTinSach seachBook(String name) {
         for (ThongTinSach inf : arrQuanLySach) {
-            if (inf.getName().equals(name)) {
+            if (inf.getNameBook().equals(name)) {
                 return inf;
             }
 
@@ -77,15 +81,55 @@ public class QuanLySach {
     public void displayBook() {
         String nameBook = addName();
         ThongTinSach seach = seachBook(nameBook);
-
-            if (seach == null) {
-                System.out.println("Khong tim thay ten sach");
-            } else
-                in.toString();
-
+        if (seach == null) {
+            System.out.println("Khong tim thay ten sach");
+        } else {
+            System.out.println(seach);
+        }
     }
 
+    public boolean checkSameY(int year) {
+        for (ThongTinSach inf : arrQuanLySach) {
+            if (inf.getYearPrint() == year) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public void displaySame() {
+       int year = addNamXuatBan();
+        for (ThongTinSach inf : arrQuanLySach) {
+            if (checkSameY(year) == true) {
+                System.out.println(inf);
+            } else
+                System.out.println("Khong tim thay sach co cung nam xuat ban");
+        }
+    }
+//    public double giamGia(double x){
+//        double giamgia = x*in.getPriceBook()/100;
+//        return giamgia;
+//    }
+public void displayGiamGia(){
+        double x = addX();
+        for(ThongTinSach inf : arrQuanLySach){
+            System.out.println(inf.getNameBook()+" sau khi giảm x% thì sach co gia la: "+(inf.getPriceBook()-x*inf.getPriceBook()/100));
+        }
+}
+public double addX(){
+        double x = 0;
+        while (true){
+            System.out.println("Moi nhap phan tram giam gia: ");
+            try {
+                x = Double.parseDouble(sc.nextLine());
+            }
+            catch (NumberFormatException e){
+                System.out.println("Khong duoc nhap ki tụ!");
+                continue;
+            }
+           return x;
+        }
+}
     public String addName() {
         String nameBook = "";
         while (true) {
@@ -131,20 +175,20 @@ public class QuanLySach {
     public String addTenTacGia() {
         System.out.println("Moi nhap thong tin tac gia");
         String nameAu = "";
-        while(true){
-        try {
-            System.out.print("Nhập tên tac gia : ");
-            nameAu = sc.nextLine();
+        while (true) {
+            try {
+                System.out.print("Nhập tên tac gia : ");
+                nameAu = sc.nextLine();
 
-            if (nameAu.matches(".*\\d.*") || nameAu.matches(".*[^a-zA-Z].*")) {
-                throw new Exception("Tên không được chứa số hoặc kí tự đặc biệt.");
+                if (nameAu.matches(".*\\d.*") || nameAu.matches(".*[^a-zA-Z].*")) {
+                    throw new Exception("Tên không được chứa số hoặc kí tự đặc biệt.");
+                }
+
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                continue;
             }
-
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-       continue;
-        }
             return nameAu;
         }
     }
