@@ -1,20 +1,15 @@
 package bai_tap_5;
-
-import bai_tap4.ThiSinh;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class QuanLySach {
     Scanner sc = new Scanner(System.in);
     ArrayList<ThongTinSach> arrQuanLySach = new ArrayList<>();
     ThongTinSach in = new ThongTinSach();
+
 
 
     public void Menu() {
@@ -98,7 +93,7 @@ public class QuanLySach {
     }
 
     public void displaySame() {
-       int year = addNamXuatBan();
+        int year = addNamXuatBan();
         for (ThongTinSach inf : arrQuanLySach) {
             if (checkSameY(year) == true) {
                 System.out.println(inf);
@@ -106,30 +101,36 @@ public class QuanLySach {
                 System.out.println("Khong tim thay sach co cung nam xuat ban");
         }
     }
-//    public double giamGia(double x){
+
+    //    public double giamGia(double x){
 //        double giamgia = x*in.getPriceBook()/100;
 //        return giamgia;
 //    }
-public void displayGiamGia(){
+    public void displayGiamGia() {
         double x = addX();
-        for(ThongTinSach inf : arrQuanLySach){
-            System.out.println(inf.getNameBook()+" sau khi giảm x% thì sach co gia la: "+(inf.getPriceBook()-x*inf.getPriceBook()/100));
+        for (ThongTinSach inf : arrQuanLySach) {
+            System.out.println(inf.getNameBook() + " sau khi giảm x% thì sach co gia la: " + (inf.getPriceBook() - x * inf.getPriceBook() / 100));
         }
-}
-public double addX(){
+    }
+
+    public double addX() {
         double x = 0;
-        while (true){
+        while (true) {
             System.out.println("Moi nhap phan tram giam gia: ");
             try {
                 x = Double.parseDouble(sc.nextLine());
-            }
-            catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Khong duoc nhap ki tụ!");
                 continue;
             }
-           return x;
+            if (x < 0 || x > 100) {
+                System.out.println("Không thể giảm giá quá 100% được! Mời Nhập lại!");
+            }
+            Math.sqrt(x);
+            return x;
         }
-}
+    }
+
     public String addName() {
         String nameBook = "";
         while (true) {
@@ -153,6 +154,9 @@ public double addX(){
             } catch (NumberFormatException e) {
                 System.out.println("Gia sach khong duoc chua chu so");
                 continue;
+            }
+            if (priceBook <= 0) {
+                System.out.println("Gia sach khong the am");
             }
             return priceBook;
         }
@@ -194,6 +198,7 @@ public double addX(){
     }
 
     public Date addBirth() {
+
         Date birth = null;
         while (true) {
             System.out.print("Nhập ngay sinh (dd/mm/yyyy): ");
@@ -202,9 +207,9 @@ public double addX(){
                 String dateString = sc.nextLine();
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 birth = dateFormat.parse(dateString);
-
             } catch (ParseException e) {
                 System.out.println("Không thể chuyển đổi ngày! Moi Nhap Lai");
+                continue;
             }
             return birth;
         }

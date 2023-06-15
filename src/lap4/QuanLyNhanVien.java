@@ -7,8 +7,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class QuanLyNhanVien {
     static Scanner sc = new Scanner(System.in);
@@ -62,9 +60,9 @@ public class QuanLyNhanVien {
                     System.out.println("Làm ơn nhập số từ 1-6 nheeee. Iuuuuuu");
                     break;
             }
-       /*if(choice==6){
-           break;
-       }*/
+//       /*if(choice==6){
+//      `       break;
+//       }*/
         }
 
     }
@@ -161,9 +159,6 @@ public class QuanLyNhanVien {
         }
     }
 
-    public static void checkNhanVien() {
-
-    }
 
     public static String enterName() {
         String name;
@@ -208,9 +203,9 @@ public class QuanLyNhanVien {
                 String dateString = sc.nextLine();
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 birth = dateFormat.parse(dateString);
-                System.out.println("Ngày tháng năm sinh của bạn: " + dateFormat.format(birth));
             } catch (ParseException e) {
                 System.out.println("Không thể chuyển đổi ngày! Moi Nhap Lai");
+                continue;
             }
             return birth;
         }
@@ -440,7 +435,5 @@ public class QuanLyNhanVien {
 
         return sb.toString();
     }
-
-
 }
 
