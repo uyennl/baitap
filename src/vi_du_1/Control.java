@@ -8,8 +8,8 @@ public class Control {
     private ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
 
     public void addNhanVien() {
-        String name = Input.enterValidName("Nhập tên nhân viên : ");
-        int age = Input.enterValidInteger("Nhâp tuổi Nhân viên: ");
+        int age = Input.enterValidInteger("Nhâp tuổi Nhân viên: ", true, true);
+        String name = Input.enterValidName("Nhập tên nhân viên : ", true);
         String birth = Input.enterValidDate("Nhập Ngày sinh");
 
         NhanVien nv = new NhanVien(name, age, birth);
