@@ -1,9 +1,16 @@
 package checked_input;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ValidDate {
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
     public static boolean isValidDate(String date) {
 //        dd/MM/yyyy
-        String[] dateStr = date.split("");
+        String[] dateStr = date.split("/");
         int[] intArr = new int[3];
         for (int i = 0; i < 3; i++) {
             intArr[i] = Integer.parseInt(dateStr[i]);
@@ -21,10 +28,10 @@ public class ValidDate {
         }
         return true;
     }
-
-    public static int isAge(int age) {
-        age = 0;
-
-return age;
+    public static boolean isEmailValid(String email) {
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
+
 }
